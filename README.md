@@ -9,6 +9,8 @@ It connects to a configured instance of [Prometheus](https://prometheus.io/docs/
 The main settings that matter are:
 ```yaml
 grafana_domain: 'grafana.example.org'
+grafana_username: 'admin'
+grafana_password: 'super-secret-password'
 grafana_version: '7.3.4'
 grafana_prometheus_sources:
   - { name: 'node-01', addr: '1.1.1.1', port: 8080 }

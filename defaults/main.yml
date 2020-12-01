@@ -16,6 +16,10 @@ grafana_cont_uid: 472
 # adjust for dockremap
 grafana_host_uid: '{{ 100000 + grafana_cont_uid | int }}'
 
+# Admin user
+grafana_username: ~
+grafana_password: ~
+
 # OAuth secrets
 grafana_oauth_id: ~
 grafana_oauth_secret: ~
