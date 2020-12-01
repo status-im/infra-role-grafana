@@ -51,4 +51,7 @@ token_url = https://github.com/login/oauth/access_token
 api_url = https://api.github.com/user
 allow_sign_up = true
 # space-delimited organization names
-allowed_organizations = status-im
+allowed_organizations = {{ grafana_oauth_gh_org }}
+{% if (grafana_oauth_gh_team_ids | length) > 0 %}
+team_ids = {{ grafana_oauth_gh_team_ids | join(",") }}
+{% endif %}

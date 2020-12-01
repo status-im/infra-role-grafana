@@ -20,6 +20,8 @@ You should also configure OAuth:
 ```yaml
 grafana_oauth_id: '123qwe123qwe123'
 grafana_oauth_secret: 'qweasdqweasdqweasdqweasd
+grafana_oauth_gh_org: 'evil-corp'
+grafana_oauth_gh_team_ids: [ 1234, 5678 ]
 ```
 Optional email configuration might be useful:
 ```yaml

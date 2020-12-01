@@ -23,6 +23,8 @@ grafana_password: ~
 # OAuth secrets
 grafana_oauth_id: ~
 grafana_oauth_secret: ~
+grafana_oauth_gh_org: 'status-im'
+grafana_oauth_gh_team_ids: []
 
 # SMTP for invite emails
 grafana_smtp_enabled: false
