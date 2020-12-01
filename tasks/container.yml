@@ -1,0 +1,16 @@
+---
+- name: Start grafana container
+  docker_container:
+    name: '{{ grafana_cont_name }}'
+    image: '{{ grafana_image }}'
+    pull: true
+    restart_policy: always
+    state: '{{ cont_state }}'
+    recreate: '{{ cont_recreate }}'
+    restart: '{{ cont_conf.changed | default(cont_restart) }}'
+    ports:
+      - '127.0.0.1:{{ grafana_port }}:3000'
+    links: '{{ grafana_cont_links }}'
+    volumes:
+      - '{{ grafana_cont_vol }}/lib:/var/lib/grafana'
+      - '{{ grafana_cont_vol }}/etc:/etc/grafana'

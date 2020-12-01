@@ -1,0 +1,48 @@
+---
+- name: Create grafana directories
+  file:
+    path: '{{ item }}'
+    state: directory
+    owner: '{{ grafana_host_uid }}'
+    group: docker
+    mode: 0775
+    recurse: true
+  with_items:
+    - '{{ grafana_cont_vol }}'
+    - '{{ grafana_cont_vol }}/etc/provisioning/datasources'
+    - '{{ grafana_cont_vol }}/lib/plugins'
+    - '{{ grafana_cont_vol }}/lib/dashboards'
+
+- name: Copy grafana config file
+  template:
+    src: 'grafana.ini.j2'
+    dest: '{{ grafana_cont_vol }}/etc/grafana.ini'
+    owner: '{{ grafana_host_uid }}'
+    group: docker
+  register: cont_conf
+
+- name: Generate datasource config file
+  template:
+    src: backend.yml.j2
+    dest: '{{ grafana_cont_vol }}/etc/provisioning/datasources/backend.yml'
+    owner: '{{ grafana_host_uid }}'
+    group: docker
+  notify: restart grafana
+
+- name: Generate ElasticSearch datasource config file
+  template:
+    src: elasticsearch.yml
+    dest: '{{ grafana_cont_vol }}/etc/provisioning/datasources/elasticsearch.yml'
+    owner: '{{ grafana_host_uid }}'
+    group: docker
+  when: grafana_es_source_container | d(False)
+  notify: restart grafana
+
+- name: Install plugins from zip archives
+  unarchive:
+    src: '{{ item }}'
+    dest: '{{ grafana_cont_vol }}/lib/plugins'
+    owner: '{{ grafana_host_uid }}'
+    group: docker
+    remote_src: true
+  with_items: '{{ grafana_plugins }}'
