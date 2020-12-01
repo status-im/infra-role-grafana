@@ -1,6 +1,10 @@
 ---
 grafana_domain: ~
 
+# Main configuration for sources
+grafana_prometheus_sources: []
+#  - { name: 'node-01', addr: '1.2.3.4', port: 8080, path: 'proxy/' }
+
 grafana_version: '7.3.4'
 grafana_image: 'grafana/grafana:{{ grafana_version }}'
 grafana_cont_name: grafana
@@ -34,6 +38,8 @@ grafana_snaphots_enabled: true
 # plugins to clone into the plugins directory
 grafana_plugins:
   - https://github.com/GoshPosh/grafana-meta-queries/archive/0.0.3.zip
+
+
 
 # generic container settings
 cont_state: started

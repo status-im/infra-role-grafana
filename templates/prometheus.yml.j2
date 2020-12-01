@@ -1,17 +1,17 @@
 apiVersion: 1
 
 deleteDatasources:
-{% for service in prometheus_services.json %}
+{% for service in grafana_prometheus_sources %}
   - id: {{ loop.index }}
 {% endfor %}
 
 datasources:
-{% for service in prometheus_services.json %}
-- name: {{ service.Node }}
+{% for service in grafana_prometheus_sources %}
+- name: {{ service.name }}
   type: prometheus
   orgId: 1
   access: proxy
-  url: http://{{ service.ServiceAddress }}:{{ service.ServicePort }}/{{ service.ServiceMeta.path | d("") }}
+  url: http://{{ service.addr }}:{{ service.port }}/{{ service.path | default("") }}
   withCredentials: false
   isDefault: {{ loop.first }}
   jsonData:

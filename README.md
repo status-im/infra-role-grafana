@@ -10,6 +10,9 @@ The main settings that matter are:
 ```yaml
 grafana_domain: 'grafana.example.org'
 grafana_version: '7.3.4'
+grafana_prometheus_sources:
+  - { name: 'node-01', addr: '1.1.1.1', port: 8080 }
+  - { name: 'node-02', addr: '1.1.1.2', port: 8080, path: 'proxy/' }
 ```
 You should also configure OAuth:
 ```yaml

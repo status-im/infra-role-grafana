@@ -23,19 +23,10 @@
 
 - name: Generate datasource config file
   template:
-    src: backend.yml.j2
-    dest: '{{ grafana_cont_vol }}/etc/provisioning/datasources/backend.yml'
+    src: prometheus.yml.j2
+    dest: '{{ grafana_cont_vol }}/etc/provisioning/datasources/prometheus.yml'
     owner: '{{ grafana_host_uid }}'
     group: docker
-  notify: restart grafana
-
-- name: Generate ElasticSearch datasource config file
-  template:
-    src: elasticsearch.yml
-    dest: '{{ grafana_cont_vol }}/etc/provisioning/datasources/elasticsearch.yml'
-    owner: '{{ grafana_host_uid }}'
-    group: docker
-  when: grafana_es_source_container | d(False)
   notify: restart grafana
 
 - name: Install plugins from zip archives
