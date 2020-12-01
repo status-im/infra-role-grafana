@@ -23,11 +23,11 @@ Optional email configuration might be useful:
 ```yaml
 grafana_smtp_enabled: true
 grafana_smtp_from_addr: 'grafana@example.org'
-grafana_smtp_from_name: ~
-grafana_smtp_host: ~
-grafana_smtp_port: ~
-grafana_smtp_user: ~
-grafana_smtp_pass: ~
+grafana_smtp_from_name: 'Grafana Email'
+grafana_smtp_host: 'smtp'.example.org
+grafana_smtp_port: 587
+grafana_smtp_user: 'grafana'
+grafana_smtp_pass: 'super-secret-password'
 ```
 You can optionally allow anonymous access:
 ```yaml
@@ -39,4 +39,4 @@ grafana_anonymous: true
 Configuration consists of two templates:
 
 * `grafana.ini.j2` - Grafana main configuration file.
-* `backends.yml.j2` - Initial configuration of the query backend(s).
+* `prometheus.yml.j2` - Initial configuration of the query backend(s).
