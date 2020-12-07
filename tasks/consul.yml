@@ -2,13 +2,13 @@
 - name: Create Consul service definition
   include_role: name=consul-service
   vars:
-    consul_config_name: 'grafana'
+    consul_config_name: '{{ grafana_service_name }}'
     consul_services:
-      - name: 'grafana'
-        tags: ['monitor', 'metrics-view']
+      - name: '{{ grafana_service_name }}'
+        tags: ['monitor', 'grafana']
         port: '{{ grafana_port }}'
         checks:
-          - id: grafana-health
-            name: Grafana current health
-            type: http
+          - id: '{{ grafana_service_name }}-health'
+            name: 'Grafana current health'
+            type: 'http'
             http: 'http://localhost:{{ grafana_port }}/api/health'

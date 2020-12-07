@@ -1,10 +1,5 @@
 apiVersion: 1
 
-deleteDatasources:
-{% for service in grafana_prometheus_sources %}
-  - id: {{ loop.index }}
-{% endfor %}
-
 datasources:
 {% for service in grafana_prometheus_sources %}
 - name: {{ service.name }}

@@ -1,0 +1,18 @@
+---
+version: '3.7'
+services:
+  app:
+    container_name: '{{ grafana_cont_name }}'
+    image: '{{ grafana_image }}'
+    restart: always
+    ports:
+      - '127.0.0.1:{{ grafana_port }}:{{ grafana_port }}'
+    volumes:
+      - '{{ grafana_cont_vol }}/lib:/var/lib/grafana'
+      - '{{ grafana_cont_vol }}/etc:/etc/grafana'
+{% if grafana_cont_ext_links|length > 0 %}
+    external_links: {{ grafana_cont_ext_links | to_yaml }}
+{% endif %}
+{% if grafana_cont_links|length > 0 %}
+    links: {{ grafana_cont_links | to_yaml }}
+{% endif %}

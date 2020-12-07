@@ -1,16 +1,17 @@
 ---
-- name: Start grafana container
-  docker_container:
-    name: '{{ grafana_cont_name }}'
-    image: '{{ grafana_image }}'
+- name: Create compose file
+  template:
+    src: 'docker-compose.yml.j2'
+    dest: '{{ grafana_compose_file }}'
+    owner: 'dockremap'
+    group: 'docker'
+    mode: 0640
+
+- name: Create containers
+  docker_compose:
+    project_src: '{{ grafana_service_path }}'
     pull: true
-    restart_policy: always
-    state: '{{ cont_state }}'
-    recreate: '{{ cont_recreate }}'
-    restart: '{{ cont_conf.changed | default(cont_restart) }}'
-    ports:
-      - '127.0.0.1:{{ grafana_port }}:3000'
-    links: '{{ grafana_cont_links }}'
-    volumes:
-      - '{{ grafana_cont_vol }}/lib:/var/lib/grafana'
-      - '{{ grafana_cont_vol }}/etc:/etc/grafana'
+    build: false
+    state: '{{ compose_state }}'
+    restarted: '{{ compose_restart }}'
+    recreate: '{{ grafana_config.changed | ternary("always", compose_recreate) }}'

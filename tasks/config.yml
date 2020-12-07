@@ -1,6 +1,15 @@
 ---
 - name: Create grafana directories
   file:
+    path: '{{ grafana_cont_vol }}'
+    state: directory
+    owner: 'dockremap'
+    group: 'docker'
+    mode: 0775
+    recurse: true
+
+- name: Create grafana directories
+  file:
     path: '{{ item }}'
     state: directory
     owner: '{{ grafana_host_uid }}'
@@ -8,18 +17,20 @@
     mode: 0775
     recurse: true
   with_items:
-    - '{{ grafana_cont_vol }}'
+    - '{{ grafana_cont_vol }}/etc'
     - '{{ grafana_cont_vol }}/etc/provisioning/datasources'
+    - '{{ grafana_cont_vol }}/lib'
     - '{{ grafana_cont_vol }}/lib/plugins'
     - '{{ grafana_cont_vol }}/lib/dashboards'
 
-- name: Copy grafana config file
+- name: Generate main config file
   template:
     src: 'grafana.ini.j2'
     dest: '{{ grafana_cont_vol }}/etc/grafana.ini'
     owner: '{{ grafana_host_uid }}'
     group: docker
-  register: cont_conf
+    mode: 0640
+  register: grafana_config
 
 - name: Generate datasource config file
   template:
@@ -27,9 +38,9 @@
     dest: '{{ grafana_cont_vol }}/etc/provisioning/datasources/prometheus.yml'
     owner: '{{ grafana_host_uid }}'
     group: docker
-  notify: restart grafana
+    mode: 0640
 
-- name: Install plugins from zip archives
+- name: Install plugins from ZIP archives
   unarchive:
     src: '{{ item }}'
     dest: '{{ grafana_cont_vol }}/lib/plugins'
