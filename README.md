@@ -44,3 +44,29 @@ Configuration consists of two templates:
 
 * `grafana.ini.j2` - Grafana main configuration file.
 * `prometheus.yml.j2` - Initial configuration of the query backend(s).
+
+# Backups
+
+Done by a Sytemd timer daily:
+```
+ > sudo systemctl list-timers 'grafana-backup'
+NEXT                        LEFT          LAST PASSED UNIT                 ACTIVATES             
+Wed 2020-12-09 00:00:00 UTC 3h 10min left n/a  n/a    grafana-backup.timer grafana-backup.service
+
+ > sudo systemctl status grafana-backup
+● grafana-backup.service - Grafana batabase backup
+     Loaded: loaded (/lib/systemd/system/grafana-backup.service; static; vendor preset: enabled)
+     Active: inactive (dead) since Tue 2020-12-08 20:48:45 UTC; 6s ago
+TriggeredBy: ● grafana-backup.timer
+       Docs: https://github.com/status-im/infra-role-systemd-timer
+    Process: 1938613 ExecStart=/usr/local/bin/grafana-backup (code=exited, status=0/SUCCESS)
+   Main PID: 1938613 (code=exited, status=0/SUCCESS)
+```
+```
+ > ls -lh /var/backups/grafana
+total 2.3M
+-rw-r--r-- 1 root root 563K Dec  5 20:20 grafana-20201205-202043.db.gz
+-rw-r--r-- 1 root root 563K Dec  6 20:48 grafana-20201206-204838.db.gz
+-rw-r--r-- 1 root root 563K Dec  7 20:48 grafana-20201207-204840.db.gz
+-rw-r--r-- 1 root root 563K Dec  8 20:48 grafana-20201208-204845.db.gz
+```
