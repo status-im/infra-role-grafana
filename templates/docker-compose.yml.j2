@@ -10,9 +10,3 @@ services:
     volumes:
       - '{{ grafana_cont_vol }}/lib:/var/lib/grafana'
       - '{{ grafana_cont_vol }}/etc:/etc/grafana'
-{% if grafana_cont_ext_links|length > 0 %}
-    external_links: {{ grafana_cont_ext_links | to_yaml }}
-{% endif %}
-{% if grafana_cont_links|length > 0 %}
-    links: {{ grafana_cont_links | to_yaml }}
-{% endif %}

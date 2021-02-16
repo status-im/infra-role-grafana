@@ -7,8 +7,6 @@ grafana_version: '7.3.4'
 grafana_image: 'grafana/grafana:{{ grafana_version }}'
 grafana_cont_name: '{{ grafana_service_name }}'
 grafana_cont_vol: '{{ grafana_service_path }}/data'
-grafana_cont_links: []
-grafana_cont_ext_links: []
 grafana_port: 9400
 # see: http://docs.grafana.org/installation/docker/#migration-from-a-previous-version-of-the-docker-container-to-5-1-or-later
 grafana_cont_uid: 472
