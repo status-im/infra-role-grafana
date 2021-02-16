@@ -11,7 +11,7 @@
   include_role: name=systemd-timer
   vars:
     systemd_timer_description: 'Grafana batabase backup'
-    systemd_timer_name: '{{ grafana_service_name }}-backup'
+    systemd_timer_name: 'backup-{{ grafana_service_name }}'
     systemd_timer_user: '{{ grafana_backup_user }}'
     systemd_timer_frequency: '{{ grafana_backup_frequency }}'
     systemd_timer_timeout_sec: '{{ grafana_backup_timeout_sec }}'
