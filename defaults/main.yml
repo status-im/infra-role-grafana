@@ -39,13 +39,6 @@ grafana_smtp_port: ~
 grafana_smtp_user: ~
 grafana_smtp_pass: ~
 
-# Backups
-grafana_backup_dir: '/var/backups/{{ grafana_service_name }}'
-grafana_backup_user: 'root'
-grafana_backup_frequency: 'daily'
-grafana_backup_timeout_sec: 30
-grafana_backup_max_kept: 14
-
 # optional anonymous access
 grafana_anonymous: false
 
