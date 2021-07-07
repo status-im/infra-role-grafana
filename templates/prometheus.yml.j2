@@ -10,8 +10,9 @@ datasources:
   withCredentials: false
   isDefault: {{ loop.first }}
   jsonData:
-     tlsAuth: false
-     tlsAuthWithCACert: false
+    httpMethod: GET
+    tlsAuth: false
+    tlsAuthWithCACert: false
   version: 1
   editable: true
 

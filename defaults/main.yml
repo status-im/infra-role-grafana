@@ -3,7 +3,7 @@ grafana_service_name: 'grafana'
 grafana_service_path: '/docker/{{ grafana_service_name }}'
 grafana_compose_file: '{{ grafana_service_path }}/docker-compose.yml'
 # Container
-grafana_version: '7.3.4'
+grafana_version: '8.0.4'
 grafana_image: 'grafana/grafana:{{ grafana_version }}'
 grafana_cont_name: '{{ grafana_service_name }}'
 grafana_cont_vol: '{{ grafana_service_path }}/data'
