@@ -9,6 +9,7 @@ datasources:
   url: http://{{ service.addr }}:{{ service.port }}/{{ service.path | default("") }}
   withCredentials: false
   isDefault: {{ loop.first }}
+  timeInterval: {{ service.interval | default(30) }}
   jsonData:
     httpMethod: GET
     tlsAuth: false
