@@ -10,3 +10,8 @@ services:
     volumes:
       - '{{ grafana_cont_vol }}/lib:/var/lib/grafana'
       - '{{ grafana_cont_vol }}/etc:/etc/grafana'
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:{{ grafana_port }}/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
