@@ -7,11 +7,12 @@ grafana_version: '8.4.3'
 grafana_image: 'grafana/grafana:{{ grafana_version }}'
 grafana_cont_name: '{{ grafana_service_name }}'
 grafana_cont_vol: '{{ grafana_service_path }}/data'
-grafana_port: 9400
 # see: http://docs.grafana.org/installation/docker/#migration-from-a-previous-version-of-the-docker-container-to-5-1-or-later
 grafana_cont_uid: 472
 # Permission adjust for dockremap.
 grafana_host_uid: '{{ 100000 + grafana_cont_uid | int }}'
+grafana_cont_port: 9400
+grafana_proxy_port: 8780
 
 # Public domain
 grafana_domain: ~

@@ -4,11 +4,26 @@
   vars:
     consul_config_name: '{{ grafana_service_name }}'
     consul_services:
-      - name: '{{ grafana_service_name }}'
-        tags: ['monitor', 'grafana']
-        port: '{{ grafana_port }}'
+      - id:   '{{ grafana_service_name }}:{{ grafana_domain }}'
+        name: '{{ grafana_service_name }}'
+        tags: ['grafana', 'monitor']
+        port: '{{ grafana_cont_port }}'
+        address: '{{ ansible_local.wireguard.vpn_ip }}'
         checks:
           - id: '{{ grafana_service_name }}-health'
-            name: 'Grafana current health'
+            name: 'Grafana Health'
             type: 'http'
-            http: 'http://localhost:{{ grafana_port }}/api/health'
+            http: 'http://localhost:{{ grafana_cont_port }}/api/health'
+
+      - id:   '{{ grafana_service_name }}-proxy:{{ grafana_domain }}'
+        name: '{{ grafana_service_name }}-proxy'
+        tags: ['grafana', 'monitor', 'ssl-proxy-backend']
+        port: '{{ grafana_proxy_port }}'
+        address: '{{ ansible_local.wireguard.vpn_ip }}'
+        meta:
+          proxy_fqdn: '{{ grafana_domain | mandatory }}'
+        checks:
+          - id: '{{ grafana_service_name }}-proxy-health'
+            name: 'Grafana Proxy Health'
+            type: 'http'
+            http: 'http://localhost:{{ grafana_proxy_port }}/health'

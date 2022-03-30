@@ -6,12 +6,12 @@ services:
     image: '{{ grafana_image }}'
     restart: always
     ports:
-      - '127.0.0.1:{{ grafana_port }}:{{ grafana_port }}'
+      - '127.0.0.1:{{ grafana_cont_port }}:{{ grafana_cont_port }}'
     volumes:
       - '{{ grafana_cont_vol }}/lib:/var/lib/grafana'
       - '{{ grafana_cont_vol }}/etc:/etc/grafana'
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:{{ grafana_port }}/api/health"]
+      test: ["CMD", "wget", "-qO-", "http://localhost:{{ grafana_cont_port }}/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
