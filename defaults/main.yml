@@ -47,8 +47,10 @@ grafana_anonymous: false
 grafana_snaphots_enabled: true
 
 # plugins to clone into the plugins directory
-grafana_plugins:
-  - https://github.com/GoshPosh/grafana-meta-queries/archive/0.0.3.zip
+grafana_plugins: []
+# URLs of plugin ZIP archives.
+grafana_unsigned_plugins: []
+#  - https://github.com/GoshPosh/grafana-meta-queries/archive/0.0.3.zip
 
 # Generic container options
 compose_recreate: 'smart'

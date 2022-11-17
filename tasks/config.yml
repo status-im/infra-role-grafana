@@ -47,4 +47,4 @@
     owner: '{{ grafana_host_uid }}'
     group: docker
     remote_src: true
-  with_items: '{{ grafana_plugins }}'
+  with_items: '{{ grafana_unsigned_plugins }}'

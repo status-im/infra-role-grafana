@@ -5,6 +5,8 @@ services:
     container_name: '{{ grafana_cont_name }}'
     image: '{{ grafana_image }}'
     restart: always
+    environment:
+      GF_INSTALL_PLUGINS: '{{ grafana_plugins | join(",") }}'
     ports:
       - '127.0.0.1:{{ grafana_cont_port }}:{{ grafana_cont_port }}'
     volumes:
