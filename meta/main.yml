@@ -13,3 +13,7 @@ galaxy_info:
     - name: infra-role-consul-service
       src: git+git@github.com:status-im/infra-role-consul-service.git
       scm: git
+
+    - name: infra-role-nginx
+      src: git+git@github.com:status-im/infra-role-nginx.git
+      scm: git
