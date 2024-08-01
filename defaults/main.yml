@@ -52,7 +52,7 @@ grafana_plugins: []
 grafana_unsigned_plugins: []
 #  - https://github.com/GoshPosh/grafana-meta-queries/archive/0.0.3.zip
 
-# Generic container options
-compose_recreate: 'smart'
+# general container management
 compose_state: 'present'
+compose_recreate: 'smart'
 compose_restart: false
