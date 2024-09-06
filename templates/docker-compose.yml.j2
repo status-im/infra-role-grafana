@@ -6,6 +6,9 @@ services:
     restart: always
     environment:
       GF_INSTALL_PLUGINS: '{{ grafana_plugins | join(",") }}'
+{% if grafana_cont_networks != [] %}
+    networks: {{ grafana_cont_networks | to_json }}
+{% endif %}
     ports:
       - '127.0.0.1:{{ grafana_cont_port }}:{{ grafana_cont_port }}'
     volumes:
@@ -16,3 +19,11 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+
+{% if grafana_cont_networks != [] %}
+{% for network in grafana_cont_networks %}
+networks:
+  {{ network }}:
+    external: true
+{% endfor %}
+{% endif %}
