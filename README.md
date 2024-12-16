@@ -16,12 +16,20 @@ grafana_prometheus_sources:
   - { name: 'node-01', addr: '1.1.1.1', port: 8080 }
   - { name: 'node-02', addr: '1.1.1.2', port: 8080, path: 'proxy/' }
 ```
-You should also configure OAuth:
+You should also configure OAuth with Github:
 ```yaml
 grafana_oauth_id: '123qwe123qwe123'
 grafana_oauth_secret: 'qweasdqweasdqweasdqweasd'
 grafana_oauth_gh_org: 'evil-corp'
 grafana_oauth_gh_team_ids: [ 1234, 5678 ]
+```
+Or with Keycloak:
+```yaml
+grafana_oauth_id:     'client-id'
+grafana_oauth_secret: 'client-secret'
+grafana_oauth_type:   'keycloak'
+grafana_oauth_keycloak_role: "contains(groups[*], 'admin') && 'Admin' || contains(groups[*], 'editor') && 'Editor' || 'Viewer'"
+grafana_oauth_keycloak_url: 'https://keycloak.com/realms/realm'
 ```
 Optional email configuration might be useful:
 ```yaml

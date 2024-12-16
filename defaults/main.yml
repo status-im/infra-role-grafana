@@ -29,9 +29,13 @@ grafana_password: ~
 # OAuth secrets
 grafana_oauth_id: ~
 grafana_oauth_secret: ~
+grafana_oauth_type: 'github'
+## OAuth GH
 grafana_oauth_gh_org: 'status-im'
 grafana_oauth_gh_team_ids: []
-
+## OAuth Keycloak
+grafana_oauth_keycloak_url: 'https://example.org/realms/name'
+grafana_oauth_keycloak_role: "contains(groups[*], 'infrastructure') && 'Admin' || contains(groups[*], 'editor') && 'Editor' || 'Viewer'"
 # SMTP for invite emails
 grafana_smtp_enabled: false
 grafana_smtp_from_addr: ~
