@@ -45,6 +45,16 @@ You can optionally allow anonymous access:
 ```yaml
 grafana_anonymous: true
 ```
+You can defined Postgre data source connections with:
+```yaml
+grafana_postgres_sources:
+  - name:     'database'
+    host:     'hostname'
+    database: 'db-name'
+    port:     port
+    user:     'user'
+    password: 'password'
+```
 
 # Details
 

@@ -34,11 +34,14 @@
 
 - name: Generate datasource config file
   template:
-    src: prometheus.yml.j2
-    dest: '{{ grafana_cont_vol }}/etc/provisioning/datasources/prometheus.yml'
+    src: '{{ item }}.j2'
+    dest: '{{ grafana_cont_vol }}/etc/provisioning/datasources/{{ item }}'
     owner: '{{ grafana_host_uid }}'
     group: docker
     mode: 0640
+  with_items:
+    - prometheus.yml
+    - postgres.yml
 
 - name: Install plugins from ZIP archives
   unarchive:

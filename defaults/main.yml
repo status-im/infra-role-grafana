@@ -21,7 +21,8 @@ grafana_domain: ~
 # Main configuration for sources
 grafana_prometheus_sources: []
 #  - { name: 'node-01', addr: '1.2.3.4', port: 8080, path: 'proxy/', interval: 30 }
-
+grafana_postgres_sources: []
+  # - { name: 'database-1', host: 'example.org', port: 5432, database: 'db-name', user: 'admin', password: 'ChangeMeIfYouCare' }
 # Admin user
 grafana_username: ~
 grafana_password: ~
