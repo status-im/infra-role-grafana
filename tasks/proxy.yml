@@ -4,15 +4,4 @@
   include_role: name=infra-role-nginx
   vars:
     nginx_sites:
-      grafana_ssl_backend:
-        - listen {{ grafana_proxy_port }}
-
-        - location /health { return 200; }
-        - location /avatar { return 401; }
-        - location /metrics { return 401; }
-        - location /api/health { return 401; }
-
-        - location / {
-            proxy_set_header Host $http_host;
-            proxy_pass http://127.0.0.1:{{ grafana_cont_port }}/;
-          }
+      '{ "{{ grafana_domain }}": {{ grafana_ssl_default_backend }} }'
