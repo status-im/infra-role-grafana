@@ -2,8 +2,9 @@
 grafana_service_name: 'grafana'
 grafana_service_path: '/docker/{{ grafana_service_name }}'
 grafana_compose_file: '{{ grafana_service_path }}/docker-compose.yml'
+
 # Container
-grafana_version: '9.2.5'
+grafana_version: '11.5.2'
 grafana_image: 'grafana/grafana:{{ grafana_version }}'
 grafana_cont_name: '{{ grafana_service_name }}'
 grafana_cont_vol: '{{ grafana_service_path }}/data'
@@ -17,6 +18,7 @@ grafana_proxy_port: 8780
 
 # Public domain
 grafana_domain: ~
+grafana_log_level: 'info' # debug, info, warn, error, critical
 
 # Main configuration for sources
 grafana_prometheus_sources: []

@@ -3,6 +3,10 @@ http_port = {{ grafana_cont_port }}
 domain = {{ grafana_domain | mandatory }}/
 root_url = https://{{ grafana_domain | mandatory }}/
 
+[log]
+mode = console
+level = {{ grafana_log_level }}
+
 [security]
 disable_gravatar = true
 cookie_secure = true
