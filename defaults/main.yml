@@ -19,7 +19,7 @@ grafana_proxy_port: 8780
 # Public domain
 grafana_domain: ~
 grafana_log_level: 'info' # debug, info, warn, error, critical
-grafana_cookie_samesite: '{{ 'none' if grafana_oauth_type == 'keycloak' else 'lax' }}'
+grafana_cookie_samesite: '{{ "none" if grafana_oauth_type == "keycloak" else "lax" }}'
 
 # Main configuration for sources
 grafana_prometheus_sources: []
