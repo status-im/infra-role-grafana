@@ -63,6 +63,9 @@ allowed_organizations = {{ grafana_oauth_gh_org }}
 {% if (grafana_oauth_gh_team_ids | length) > 0 %}
 team_ids = {{ grafana_oauth_gh_team_ids | join(",") }}
 {% endif %}
+{% if grafana_oauth_gh_org_mapping is defined %}
+org_mapping = {{ grafana_oauth_gh_org_mapping }}
+{% endif %}
 {% endif %}
 
 {% if grafana_oauth_type == 'keycloak' %}
