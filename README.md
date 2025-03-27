@@ -56,6 +56,11 @@ grafana_postgres_sources:
     password: 'password'
 ```
 
+Default date format can be updated:
+```yaml
+grafana_full_date_format: 'YYYY-MM-DD'
+```
+
 # Details
 
 Configuration consists of two templates:

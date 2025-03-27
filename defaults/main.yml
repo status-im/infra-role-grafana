@@ -62,6 +62,9 @@ grafana_plugins: []
 grafana_unsigned_plugins: []
 #  - https://github.com/GoshPosh/grafana-meta-queries/archive/0.0.3.zip
 
+# Date format
+grafana_full_date_format: 'YYYY-MM-DD hh:mm:ss'
+
 # general container management
 compose_recreate: 'auto'
 compose_state: 'present'
