@@ -37,6 +37,7 @@ grafana_oauth_type: 'github'
 ## OAuth GH
 grafana_oauth_gh_org: 'status-im'
 grafana_oauth_gh_team_ids: []
+grafana_oauth_gh_role_attr_path: 'Viewer'
 #grafana_oauth_gh_org_mapping: ~
 ## OAuth Keycloak
 grafana_oauth_keycloak_url: 'https://example.org/realms/name'

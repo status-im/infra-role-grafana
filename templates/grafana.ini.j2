@@ -60,6 +60,8 @@ api_url = https://api.github.com/user
 allow_sign_up = true
 # space-delimited organization names
 allowed_organizations = {{ grafana_oauth_gh_org }}
+allow_assign_grafana_admin = true
+role_attribute_path = {{ grafana_oauth_gh_role_attr_path }}
 {% if (grafana_oauth_gh_team_ids | length) > 0 %}
 team_ids = {{ grafana_oauth_gh_team_ids | join(",") }}
 {% endif %}
