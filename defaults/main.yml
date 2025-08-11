@@ -4,7 +4,7 @@ grafana_service_path: '/docker/{{ grafana_service_name }}'
 grafana_compose_file: '{{ grafana_service_path }}/docker-compose.yml'
 
 # Container
-grafana_version: '11.5.2'
+grafana_version: '12.1.0'
 grafana_image: 'grafana/grafana:{{ grafana_version }}'
 grafana_cont_name: '{{ grafana_service_name }}'
 grafana_cont_vol: '{{ grafana_service_path }}/data'
