@@ -67,3 +67,7 @@ Configuration consists of two templates:
 
 * `grafana.ini.j2` - Grafana main configuration file.
 * `prometheus.yml.j2` - Initial configuration of the query backend(s).
+
+# Backup & Restore
+
+See [BACKUP.md](./BACKUP.md) doc.
