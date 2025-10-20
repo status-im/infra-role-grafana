@@ -64,7 +64,10 @@ grafana_unsigned_plugins: []
 #  - https://github.com/GoshPosh/grafana-meta-queries/archive/0.0.3.zip
 
 # Date format
-grafana_full_date_format: 'YYYY-MM-DD hh:mm:ss'
+grafana_full_date_format: 'YYYY-MM-DD HH:mm:ss'
+grafana_default_timezone: 'UTC'
+grafana_default_week_start: 'monday'
+grafana_use_browser_locale: false
 
 # general container management
 compose_recreate: 'auto'
