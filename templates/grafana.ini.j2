@@ -51,16 +51,16 @@ org_role = Viewer
 [auth.github]
 enabled = true
 allow_sign_up = true
+skip_org_role_sync = false
+allow_assign_grafana_admin = true
 client_id = {{ grafana_oauth_id | mandatory }}
 client_secret = {{ grafana_oauth_secret | mandatory }}
 scopes = user:email,read:org
 auth_url = https://github.com/login/oauth/authorize
 token_url = https://github.com/login/oauth/access_token
 api_url = https://api.github.com/user
-allow_sign_up = true
 # space-delimited organization names
-allowed_organizations = {{ grafana_oauth_gh_org }}
-allow_assign_grafana_admin = true
+allowed_organizations = {{ grafana_oauth_gh_orgs | to_json }}
 role_attribute_path = {{ grafana_oauth_gh_role_attr_path }}
 {% if (grafana_oauth_gh_team_ids | length) > 0 %}
 team_ids = {{ grafana_oauth_gh_team_ids | join(",") }}
